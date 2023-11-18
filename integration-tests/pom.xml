@@ -18,6 +18,10 @@
       <artifactId>quarkus-resteasy</artifactId>
     </dependency>
     <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jackson</artifactId>
+    </dependency>
+    <dependency>
       <groupId>io.quarkiverse.arangodb-client-ext</groupId>
       <artifactId>quarkus-arangodb-client-ext</artifactId>
       <version>${project.version}</version>

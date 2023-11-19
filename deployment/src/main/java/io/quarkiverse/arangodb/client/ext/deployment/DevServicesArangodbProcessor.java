@@ -1,5 +1,6 @@
 package io.quarkiverse.arangodb.client.ext.deployment;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import io.quarkus.deployment.console.ConsoleInstalledBuildItem;
 import io.quarkus.deployment.console.StartupLogCompressor;
 import io.quarkus.deployment.dev.devservices.GlobalDevServicesConfig;
 import io.quarkus.deployment.logging.LoggingSetupBuildItem;
+import io.quarkus.runtime.configuration.ConfigUtils;
 
 @BuildSteps(onlyIfNot = IsNormal.class, onlyIf = GlobalDevServicesConfig.Enabled.class)
 public class DevServicesArangodbProcessor {
@@ -65,15 +67,17 @@ public class DevServicesArangodbProcessor {
     }
 
     private RunningDevService startArangodb() {
+        final boolean useSSL = ConfigUtils.getFirstOptionalValue(List.of("quarkus.arangodb.use-ssl"), Boolean.class)
+                .orElse(Boolean.FALSE);
         final ArangodbContainer arangodb = new ArangodbContainer(
-                DockerImageName.parse("arangodb:3.11.5"));
+                DockerImageName.parse("arangodb:3.11.5"), useSSL);
         arangodb.start();
         return new RunningDevService("ARANGODB_CLIENT",
                 arangodb.getContainerId(),
                 arangodb::close,
                 Map.of(
                         "quarkus.arangodb.hosts[0].hostname", "localhost",
-                        "quarkus.arangodb.hosts[0].port", arangodb.getHttpPort().toString(),
+                        "quarkus.arangodb.hosts[0].port", arangodb.getPort().toString(),
                         "quarkus.arangodb.user", arangodb.getUser(),
                         "quarkus.arangodb.password", arangodb.getPassword()));
     }

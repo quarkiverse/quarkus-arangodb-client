@@ -18,6 +18,14 @@
       <groupId>com.arangodb</groupId>
       <artifactId>arangodb-java-driver-shaded</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.arangodb</groupId>
+      <artifactId>jackson-serde-json</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.arangodb</groupId>
+      <artifactId>jackson-serde-vpack</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

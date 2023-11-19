@@ -9,6 +9,7 @@ import jakarta.inject.Singleton;
 import org.eclipse.microprofile.context.ManagedExecutor;
 
 import com.arangodb.ArangoDB;
+import com.arangodb.serde.ArangoSerde;
 
 import io.smallrye.mutiny.infrastructure.Infrastructure;
 
@@ -16,11 +17,14 @@ import io.smallrye.mutiny.infrastructure.Infrastructure;
 public class ArangodbClient {
     private final ArangodbSSLContextProvider arangodbSSLContextProvider;
     private final Instance<ManagedExecutor> managedExecutorInstance;
+    private final Instance<ArangoSerde> arangoSerdeInstance;
 
     public ArangodbClient(final ArangodbSSLContextProvider arangodbSSLContextProvider,
-            final Instance<ManagedExecutor> managedExecutorInstance) {
+            final Instance<ManagedExecutor> managedExecutorInstance,
+            final Instance<ArangoSerde> arangoSerdeInstance) {
         this.arangodbSSLContextProvider = Objects.requireNonNull(arangodbSSLContextProvider);
         this.managedExecutorInstance = Objects.requireNonNull(managedExecutorInstance);
+        this.arangoSerdeInstance = Objects.requireNonNull(arangoSerdeInstance);
     }
 
     @Produces
@@ -52,6 +56,11 @@ public class ArangodbClient {
         arangodbClientConfig.acquireHostListInterval().ifPresent(clientBuilder::acquireHostListInterval);
         arangodbClientConfig.loadBalancingStrategy().ifPresent(clientBuilder::loadBalancingStrategy);
         arangodbClientConfig.responseQueueTimeSamples().ifPresent(clientBuilder::responseQueueTimeSamples);
+        if (arangoSerdeInstance.isResolvable()) {
+            clientBuilder.serde(arangoSerdeInstance.get());
+        } else if (arangoSerdeInstance.isAmbiguous()) {
+            throw new IllegalStateException("Multiple implementations of ArangoSerde. Only a default one is expected");
+        }
         return clientBuilder
                 .asyncExecutor(managedExecutorInstance.isResolvable() ? managedExecutorInstance.get()
                         : Infrastructure.getDefaultWorkerPool())

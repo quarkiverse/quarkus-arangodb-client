@@ -28,6 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.version>3.5.2</quarkus.version>
+    <arangodb-java-driver.version>7.2.0</arangodb-java-driver.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -41,7 +42,17 @@
       <dependency>
         <groupId>com.arangodb</groupId>
         <artifactId>arangodb-java-driver-shaded</artifactId>
-        <version>7.2.0</version>
+        <version>${arangodb-java-driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.arangodb</groupId>
+        <artifactId>jackson-serde-json</artifactId>
+        <version>${arangodb-java-driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.arangodb</groupId>
+        <artifactId>jackson-serde-vpack</artifactId>
+        <version>${arangodb-java-driver.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

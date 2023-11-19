@@ -2,7 +2,10 @@ package io.quarkiverse.arangodb.client.ext.deployment;
 
 import io.quarkiverse.arangodb.client.ext.runtime.ArangodbClient;
 import io.quarkiverse.arangodb.client.ext.runtime.DefaultArangodbSSLContextProvider;
+import io.quarkiverse.arangodb.client.ext.runtime.QuarkusJacksonArangodbSerde;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
+import io.quarkus.deployment.Capabilities;
+import io.quarkus.deployment.Capability;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.CapabilityBuildItem;
@@ -18,7 +21,15 @@ class ArangodbClientExtProcessor {
     }
 
     @BuildStep
-    void produceStateRepositoryResultBuildItem(final BuildProducer<AdditionalBeanBuildItem> additionalBeanBuildItemProducer) {
+    void produceStateRepositoryResultBuildItem(final Capabilities capabilities,
+            final BuildProducer<AdditionalBeanBuildItem> additionalBeanBuildItemProducer) {
+        if (capabilities.isPresent(Capability.JACKSON)) {
+            additionalBeanBuildItemProducer.produce(
+                    AdditionalBeanBuildItem.builder()
+                            .setUnremovable()
+                            .addBeanClasses(QuarkusJacksonArangodbSerde.class)
+                            .build());
+        }
         additionalBeanBuildItemProducer.produce(
                 AdditionalBeanBuildItem.builder()
                         .setUnremovable()
@@ -33,6 +44,6 @@ class ArangodbClientExtProcessor {
 
     @BuildStep
     void capabilities(final BuildProducer<CapabilityBuildItem> capabilityProducer) {
-        capabilityProducer.produce(new CapabilityBuildItem("io.quarkus.arangodb", "arangodb-client-ext"));
+        capabilityProducer.produce(new CapabilityBuildItem("io.quarkus.arangodb", FEATURE));
     }
 }

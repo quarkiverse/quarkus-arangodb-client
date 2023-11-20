@@ -1,5 +1,6 @@
 package io.quarkiverse.arangodb.client.ext.runtime;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,9 +77,9 @@ public interface ArangodbClientConfig {
     interface SSLTruststore {
 
         /**
-         * path where to find the cert file
+         * location where to find the cert file
          */
-        String path();
+        Path location();
 
         /**
          * trustStore password

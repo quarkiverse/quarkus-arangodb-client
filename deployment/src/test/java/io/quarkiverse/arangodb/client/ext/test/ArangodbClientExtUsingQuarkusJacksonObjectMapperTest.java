@@ -34,7 +34,7 @@ public class ArangodbClientExtUsingQuarkusJacksonObjectMapperTest extends Common
                     Dependency.of("io.quarkus", "quarkus-jackson", Version.getVersion())));
 
     @Singleton
-    public static class RegisterCustomModuleCustomizer implements ObjectMapperCustomizer {
+    private static class RegisterCustomModuleCustomizer implements ObjectMapperCustomizer {
         private static final String PERSON_SERIALIZER_ADDED_PREFIX = "MyNameIs";
         private static final String PERSON_DESERIALIZER_ADDED_PREFIX = "Hello";
 

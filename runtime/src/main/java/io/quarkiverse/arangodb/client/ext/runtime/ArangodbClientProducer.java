@@ -14,22 +14,17 @@ import com.arangodb.serde.ArangoSerde;
 import io.smallrye.mutiny.infrastructure.Infrastructure;
 
 @Singleton
-public class ArangodbClient {
-    private final ArangodbSSLContextProvider arangodbSSLContextProvider;
-    private final Instance<ManagedExecutor> managedExecutorInstance;
-    private final Instance<ArangoSerde> arangoSerdeInstance;
-
-    public ArangodbClient(final ArangodbSSLContextProvider arangodbSSLContextProvider,
-            final Instance<ManagedExecutor> managedExecutorInstance,
-            final Instance<ArangoSerde> arangoSerdeInstance) {
-        this.arangodbSSLContextProvider = Objects.requireNonNull(arangodbSSLContextProvider);
-        this.managedExecutorInstance = Objects.requireNonNull(managedExecutorInstance);
-        this.arangoSerdeInstance = Objects.requireNonNull(arangoSerdeInstance);
-    }
-
+public class ArangodbClientProducer {
     @Produces
     @Singleton
-    public ArangoDB produceArangodbClient(final ArangodbClientConfig arangodbClientConfig) {
+    public ArangoDB produceArangodbClient(final ArangodbClientConfig arangodbClientConfig,
+            final ArangodbSSLContextProvider arangodbSSLContextProvider,
+            final Instance<ManagedExecutor> managedExecutorInstance,
+            final Instance<ArangoSerde> arangoSerdeInstance) {
+        Objects.requireNonNull(arangodbClientConfig);
+        Objects.requireNonNull(arangodbSSLContextProvider);
+        Objects.requireNonNull(managedExecutorInstance);
+        Objects.requireNonNull(arangoSerdeInstance);
         if (arangodbClientConfig.hosts().isEmpty()) {
             throw new IllegalStateException("At least one host is expected");
         }

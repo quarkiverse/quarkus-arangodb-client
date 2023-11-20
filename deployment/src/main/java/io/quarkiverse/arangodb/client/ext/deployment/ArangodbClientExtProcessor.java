@@ -1,8 +1,8 @@
 package io.quarkiverse.arangodb.client.ext.deployment;
 
-import io.quarkiverse.arangodb.client.ext.runtime.ArangodbClient;
-import io.quarkiverse.arangodb.client.ext.runtime.DefaultArangodbSSLContextProvider;
-import io.quarkiverse.arangodb.client.ext.runtime.QuarkusJacksonArangodbSerde;
+import io.quarkiverse.arangodb.client.ext.runtime.ArangodbClientProducer;
+import io.quarkiverse.arangodb.client.ext.runtime.QuarkusJacksonArangodbSerdeProducer;
+import io.quarkiverse.arangodb.client.ext.runtime.TruststoreArangodbSSLContextProviderProducer;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
 import io.quarkus.deployment.Capabilities;
 import io.quarkus.deployment.Capability;
@@ -27,18 +27,18 @@ class ArangodbClientExtProcessor {
             additionalBeanBuildItemProducer.produce(
                     AdditionalBeanBuildItem.builder()
                             .setUnremovable()
-                            .addBeanClasses(QuarkusJacksonArangodbSerde.class)
+                            .addBeanClasses(QuarkusJacksonArangodbSerdeProducer.class)
                             .build());
         }
         additionalBeanBuildItemProducer.produce(
                 AdditionalBeanBuildItem.builder()
                         .setUnremovable()
-                        .addBeanClasses(DefaultArangodbSSLContextProvider.class)
+                        .addBeanClasses(TruststoreArangodbSSLContextProviderProducer.class)
                         .build());
         additionalBeanBuildItemProducer.produce(
                 AdditionalBeanBuildItem.builder()
                         .setUnremovable()
-                        .addBeanClasses(ArangodbClient.class)
+                        .addBeanClasses(ArangodbClientProducer.class)
                         .build());
     }
 

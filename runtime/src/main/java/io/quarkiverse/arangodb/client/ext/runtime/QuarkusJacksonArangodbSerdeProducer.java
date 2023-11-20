@@ -12,18 +12,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.quarkus.arc.DefaultBean;
 
 @Singleton
-public class QuarkusJacksonArangodbSerde {
-
-    private final ObjectMapper objectMapper;
-
-    public QuarkusJacksonArangodbSerde(final ObjectMapper objectMapper) {
-        this.objectMapper = Objects.requireNonNull(objectMapper);
-    }
+public class QuarkusJacksonArangodbSerdeProducer {
 
     @Singleton
     @Produces
     @DefaultBean
-    public ArangoSerde arangodbSerdeProducer() {
+    public ArangoSerde arangodbSerdeProducer(final ObjectMapper objectMapper) {
+        Objects.requireNonNull(objectMapper);
         return new JacksonSerdeImpl(objectMapper);
     }
 }

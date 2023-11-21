@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.KeyStore;
 import java.util.Objects;
-import java.util.Optional;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -22,19 +21,16 @@ import io.quarkus.runtime.util.ClassPathUtils;
 // https://github.com/arangodb/arangodb-java-driver/blob/main/driver/src/test/java/com/arangodb/example/ssl/SslExampleTest.java
 @Singleton
 public final class TruststoreArangodbSSLContextProviderProducer {
-    static class TruststoreArangodbSSLContextProvider implements ArangodbSSLContextProvider {
+    static final class TruststoreArangodbSSLContextProvider implements ArangodbSSLContextProvider {
 
         private final ArangodbClientConfig arangodbClientConfig;
 
-        TruststoreArangodbSSLContextProvider(final ArangodbClientConfig arangodbClientConfig) {
+        private TruststoreArangodbSSLContextProvider(final ArangodbClientConfig arangodbClientConfig) {
             this.arangodbClientConfig = Objects.requireNonNull(arangodbClientConfig);
         }
 
         @Override
-        public Optional<SSLContext> provide() throws ArangodbSSLContextException {
-            if (Boolean.FALSE.equals(arangodbClientConfig.useSSL())) {
-                return Optional.empty();
-            }
+        public SSLContext provide() throws ArangodbSSLContextException {
             try {
                 final SSLTruststore SSLTruststore = arangodbClientConfig.sslTruststore()
                         .orElseThrow(() -> new IllegalStateException("sslTruststore configuration is mandatory"));
@@ -53,7 +49,7 @@ public final class TruststoreArangodbSSLContextProviderProducer {
                 final SSLContext sc = SSLContext.getInstance("TLS");
                 sc.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
 
-                return Optional.of(sc);
+                return sc;
             } catch (final Exception exception) {
                 throw new ArangodbSSLContextException(exception);
             }

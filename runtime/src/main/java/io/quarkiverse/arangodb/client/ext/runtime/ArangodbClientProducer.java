@@ -2,6 +2,8 @@ package io.quarkiverse.arangodb.client.ext.runtime;
 
 import java.util.Objects;
 
+import javax.net.ssl.SSLContext;
+
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
@@ -41,12 +43,14 @@ public class ArangodbClientProducer {
         arangodbClientConfig.user().ifPresent(clientBuilder::user);
         clientBuilder.password(arangodbClientConfig.password());
         arangodbClientConfig.jwt().ifPresent(clientBuilder::jwt);
-        try {
-            arangodbSSLContextProvider.provide().ifPresentOrElse(
-                    sslContext -> clientBuilder.useSsl(true).sslContext(sslContext),
-                    () -> clientBuilder.useSsl(false));
-        } catch (final ArangodbSSLContextException arangodbSSLContextException) {
-            throw new IllegalStateException("Unable to load SSL truststore", arangodbSSLContextException.getCause());
+        clientBuilder.useSsl(arangodbClientConfig.useSSL());
+        if (arangodbClientConfig.useSSL()) {
+            try {
+                final SSLContext sslContext = Objects.requireNonNull(arangodbSSLContextProvider.provide());
+                clientBuilder.sslContext(sslContext);
+            } catch (final ArangodbSSLContextException arangodbSSLContextException) {
+                throw new IllegalStateException("Unable to load SSL truststore", arangodbSSLContextException.getCause());
+            }
         }
         arangodbClientConfig.verifyHost().ifPresent(clientBuilder::verifyHost);
         arangodbClientConfig.chunkSize().ifPresent(clientBuilder::chunkSize);

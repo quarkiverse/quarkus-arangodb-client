@@ -8,7 +8,6 @@ import io.quarkus.deployment.Capabilities;
 import io.quarkus.deployment.Capability;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
-import io.quarkus.deployment.builditem.CapabilityBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 
 class ArangodbClientExtProcessor {
@@ -40,10 +39,5 @@ class ArangodbClientExtProcessor {
                         .setUnremovable()
                         .addBeanClasses(ArangodbClientProducer.class)
                         .build());
-    }
-
-    @BuildStep
-    void capabilities(final BuildProducer<CapabilityBuildItem> capabilityProducer) {
-        capabilityProducer.produce(new CapabilityBuildItem("io.quarkus.arangodb", FEATURE));
     }
 }

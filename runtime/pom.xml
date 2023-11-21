@@ -33,6 +33,11 @@
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-extension-maven-plugin</artifactId>
         <version>${quarkus.version}</version>
+        <configuration>
+          <capabilities>
+            <provides>io.quarkus.arangodb</provides>
+          </capabilities>
+        </configuration>
         <executions>
           <execution>
             <phase>compile</phase>

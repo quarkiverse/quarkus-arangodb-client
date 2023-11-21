@@ -25,6 +25,12 @@ public class ArangodbClientProducer {
         Objects.requireNonNull(arangodbSSLContextProvider);
         Objects.requireNonNull(managedExecutorInstance);
         Objects.requireNonNull(arangoSerdeInstance);
+        if (managedExecutorInstance.isAmbiguous()) {
+            throw new IllegalStateException("Multiple implementations of ManagedExecutor. Only one is expected");
+        }
+        if (arangoSerdeInstance.isAmbiguous()) {
+            throw new IllegalStateException("Multiple implementations of ArangoSerde. Only one is expected");
+        }
         if (arangodbClientConfig.hosts().isEmpty()) {
             throw new IllegalStateException("At least one host is expected");
         }
@@ -53,8 +59,6 @@ public class ArangodbClientProducer {
         arangodbClientConfig.responseQueueTimeSamples().ifPresent(clientBuilder::responseQueueTimeSamples);
         if (arangoSerdeInstance.isResolvable()) {
             clientBuilder.serde(arangoSerdeInstance.get());
-        } else if (arangoSerdeInstance.isAmbiguous()) {
-            throw new IllegalStateException("Multiple implementations of ArangoSerde. Only a default one is expected");
         }
         return clientBuilder
                 .asyncExecutor(managedExecutorInstance.isResolvable() ? managedExecutorInstance.get()

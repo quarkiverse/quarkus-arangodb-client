@@ -21,16 +21,19 @@ public final class ArangodbContainer extends GenericContainer<ArangodbContainer>
         super(dockerImageName);
         dockerImageName.assertCompatibleWith(IMAGE);
         this.useSSL = useSSL;
-        addExposedPorts(ARANGODB_HTTP_PORT, ARANGODB_SSL_PORT);
+        addExposedPort(ARANGODB_HTTP_PORT);
         withEnv(ARANGO_ROOT_PASSWORD, PASSWORD);
-        final String setupSSLCommand = "sed -i '/endpoint = tcp:\\/\\/0.0.0.0:8529/a endpoint = ssl:\\/\\/0.0.0.0:8530' /tmp/arangod.conf\n"
-                +
-                "echo \"[ssl]\" >> /tmp/arangod.conf\n" +
-                "echo \"keyfile = var/lib/arangodb/server.pem\" >> /tmp/arangod.conf\n";
-        withCopyToContainer(Transferable.of(setupSSLCommand, 0744), "/docker-entrypoint-initdb.d/setup-ssl.sh");
-        withCopyFileToContainer(
-                MountableFile.forClasspathResource("/server.pem", 0744),
-                "/var/lib/arangodb/server.pem");
+        if (useSSL) {
+            addExposedPort(ARANGODB_SSL_PORT);
+            final String setupSSLCommand = "sed -i '/endpoint = tcp:\\/\\/0.0.0.0:8529/a endpoint = ssl:\\/\\/0.0.0.0:8530' /tmp/arangod.conf\n"
+                    +
+                    "echo \"[ssl]\" >> /tmp/arangod.conf\n" +
+                    "echo \"keyfile = var/lib/arangodb/server.pem\" >> /tmp/arangod.conf\n";
+            withCopyToContainer(Transferable.of(setupSSLCommand, 0744), "/docker-entrypoint-initdb.d/setup-ssl.sh");
+            withCopyFileToContainer(
+                    MountableFile.forClasspathResource("/server.pem", 0744),
+                    "/var/lib/arangodb/server.pem");
+        }
         waitingFor(Wait.forLogMessage(".*is ready for business. Have fun.*", 1));
     }
 

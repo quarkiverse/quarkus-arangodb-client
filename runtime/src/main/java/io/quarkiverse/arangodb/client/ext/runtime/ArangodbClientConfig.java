@@ -58,11 +58,6 @@ public interface ArangodbClientConfig {
     String password();
 
     /**
-     * JWT for authentication
-     */
-    Optional<String> jwt();
-
-    /**
      * use SSL connection, (default: false)
      */
     @WithDefault("false")

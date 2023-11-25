@@ -1,18 +1,16 @@
 package io.quarkiverse.arangodb.client.ext.runtime;
 
 import java.nio.file.Path;
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.arangodb.Protocol;
 import com.arangodb.entity.LoadBalancingStrategy;
 
-import io.quarkus.runtime.annotations.ConfigDocSection;
-import io.quarkus.runtime.annotations.ConfigGroup;
-import io.quarkus.runtime.annotations.ConfigPhase;
-import io.quarkus.runtime.annotations.ConfigRoot;
+import io.quarkus.runtime.annotations.*;
 import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithDefault;
+import io.smallrye.config.WithUnnamedKey;
 
 // https://docs.arangodb.com/3.11/develop/drivers/java/reference-version-7/driver-setup/
 @ConfigMapping(prefix = "quarkus.arangodb")
@@ -22,7 +20,9 @@ public interface ArangodbClientConfig {
      * list of hosts to connect on. At least one is expected.
      */
     @ConfigDocSection
-    List<HostConfig> hosts();
+    @WithUnnamedKey("<default>")
+    @ConfigDocMapKey("host-name")
+    Map<String, HostConfig> hosts();
 
     @ConfigGroup
     interface HostConfig {

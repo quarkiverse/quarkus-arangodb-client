@@ -37,7 +37,7 @@ public class ArangodbClientProducer {
             throw new IllegalStateException("At least one host is expected");
         }
         final ArangoDB.Builder clientBuilder = new ArangoDB.Builder();
-        arangodbClientConfig.hosts().forEach(host -> clientBuilder.host(host.hostname(), host.port()));
+        arangodbClientConfig.hosts().forEach((name, host) -> clientBuilder.host(host.hostname(), host.port()));
         arangodbClientConfig.protocol().ifPresent(clientBuilder::protocol);
         arangodbClientConfig.timeout().ifPresent(clientBuilder::timeout);
         arangodbClientConfig.user().ifPresent(clientBuilder::user);

@@ -76,8 +76,8 @@ public class DevServicesArangodbProcessor {
                 arangodb.getContainerId(),
                 arangodb::close,
                 Map.of(
-                        "quarkus.arangodb.hosts[0].hostname", "localhost",
-                        "quarkus.arangodb.hosts[0].port", arangodb.getPort().toString(),
+                        "quarkus.arangodb.hosts.hostname", "localhost",
+                        "quarkus.arangodb.hosts.port", arangodb.getPort().toString(),
                         "quarkus.arangodb.user", arangodb.getUser(),
                         "quarkus.arangodb.password", arangodb.getPassword()));
     }

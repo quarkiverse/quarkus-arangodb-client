@@ -1,0 +1,334 @@
+
+:summaryTableId: quarkus-arangodb
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[[quarkus-arangodb_configuration]]link:#quarkus-arangodb_configuration[Configuration property]
+
+h|Type
+h|Default
+
+a| [[quarkus-arangodb_quarkus.arangodb.protocol]]`link:#quarkus-arangodb_quarkus.arangodb.protocol[quarkus.arangodb.protocol]`
+
+
+[.description]
+--
+communication protocol, possible values are: VST, HTTP_JSON, HTTP_VPACK, HTTP2_JSON, HTTP2_VPACK, (default: HTTP2_JSON)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_PROTOCOL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_PROTOCOL+++`
+endif::add-copy-button-to-env-var[]
+-- a|
+`vst`, `http-json`, `http-vpack`, `http2-json`, `http2-vpack` 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.timeout]]`link:#quarkus-arangodb_quarkus.arangodb.timeout[quarkus.arangodb.timeout]`
+
+
+[.description]
+--
+connection and request timeout (ms), (default 0, no timeout)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_TIMEOUT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_TIMEOUT+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.user]]`link:#quarkus-arangodb_quarkus.arangodb.user[quarkus.arangodb.user]`
+
+
+[.description]
+--
+username for authentication, (default: root)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_USER+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_USER+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.password]]`link:#quarkus-arangodb_quarkus.arangodb.password[quarkus.arangodb.password]`
+
+
+[.description]
+--
+password for authentication
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_PASSWORD+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_PASSWORD+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.use-ssl]]`link:#quarkus-arangodb_quarkus.arangodb.use-ssl[quarkus.arangodb.use-ssl]`
+
+
+[.description]
+--
+use SSL connection, (default: false)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_USE_SSL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_USE_SSL+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`false`
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.verify-host]]`link:#quarkus-arangodb_quarkus.arangodb.verify-host[quarkus.arangodb.verify-host]`
+
+
+[.description]
+--
+enable hostname verification, (HTTP only, default: true)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_VERIFY_HOST+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_VERIFY_HOST+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.chunk-size]]`link:#quarkus-arangodb_quarkus.arangodb.chunk-size[quarkus.arangodb.chunk-size]`
+
+
+[.description]
+--
+VST chunk size in bytes, (default: 30000)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_CHUNK_SIZE+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_CHUNK_SIZE+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.max-connections]]`link:#quarkus-arangodb_quarkus.arangodb.max-connections[quarkus.arangodb.max-connections]`
+
+
+[.description]
+--
+max number of connections per host, (default: 1 VST, 1 HTTP/2, 20 HTTP/1.1)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_MAX_CONNECTIONS+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_MAX_CONNECTIONS+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.connection-ttl]]`link:#quarkus-arangodb_quarkus.arangodb.connection-ttl[quarkus.arangodb.connection-ttl]`
+
+
+[.description]
+--
+max lifetime of a connection (ms), (default: no ttl)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_CONNECTION_TTL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_CONNECTION_TTL+++`
+endif::add-copy-button-to-env-var[]
+--|long 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.keep-alive-interval]]`link:#quarkus-arangodb_quarkus.arangodb.keep-alive-interval[quarkus.arangodb.keep-alive-interval]`
+
+
+[.description]
+--
+VST keep-alive interval (s), (default: no keep-alive probes will be sent)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_KEEP_ALIVE_INTERVAL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_KEEP_ALIVE_INTERVAL+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.acquire-host-list]]`link:#quarkus-arangodb_quarkus.arangodb.acquire-host-list[quarkus.arangodb.acquire-host-list]`
+
+
+[.description]
+--
+acquire the list of available hosts, (default: false)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_ACQUIRE_HOST_LIST+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_ACQUIRE_HOST_LIST+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.acquire-host-list-interval]]`link:#quarkus-arangodb_quarkus.arangodb.acquire-host-list-interval[quarkus.arangodb.acquire-host-list-interval]`
+
+
+[.description]
+--
+acquireHostList interval (ms), (default: 3_600_000, 1 hour)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_ACQUIRE_HOST_LIST_INTERVAL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_ACQUIRE_HOST_LIST_INTERVAL+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.load-balancing-strategy]]`link:#quarkus-arangodb_quarkus.arangodb.load-balancing-strategy[quarkus.arangodb.load-balancing-strategy]`
+
+
+[.description]
+--
+load balancing strategy, possible values are: NONE, ROUND_ROBIN, ONE_RANDOM, (default: NONE)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_LOAD_BALANCING_STRATEGY+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_LOAD_BALANCING_STRATEGY+++`
+endif::add-copy-button-to-env-var[]
+-- a|
+`none`, `round-robin`, `one-random` 
+|
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.response-queue-time-samples]]`link:#quarkus-arangodb_quarkus.arangodb.response-queue-time-samples[quarkus.arangodb.response-queue-time-samples]`
+
+
+[.description]
+--
+amount of samples kept for queue time metrics, (default: 10)
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_RESPONSE_QUEUE_TIME_SAMPLES+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_RESPONSE_QUEUE_TIME_SAMPLES+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|
+
+
+h|[[quarkus-arangodb_quarkus.arangodb.hosts-list-of-hosts-to-connect-on]]link:#quarkus-arangodb_quarkus.arangodb.hosts-list-of-hosts-to-connect-on[list of hosts to connect on]
+
+h|Type
+h|Default
+
+a| [[quarkus-arangodb_quarkus.arangodb.hosts.hostname]]`link:#quarkus-arangodb_quarkus.arangodb.hosts.hostname[quarkus.arangodb.hosts.hostname]`
+
+`link:#quarkus-arangodb_quarkus.arangodb.hosts.hostname[quarkus.arangodb.hosts."host-name".hostname]`
+
+
+[.description]
+--
+host hostname
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_HOSTS_HOSTNAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_HOSTS_HOSTNAME+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.hosts.port]]`link:#quarkus-arangodb_quarkus.arangodb.hosts.port[quarkus.arangodb.hosts.port]`
+
+`link:#quarkus-arangodb_quarkus.arangodb.hosts.port[quarkus.arangodb.hosts."host-name".port]`
+
+
+[.description]
+--
+host port
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_HOSTS_PORT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_HOSTS_PORT+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+
+h|[[quarkus-arangodb_quarkus.arangodb.ssl-truststore-ssltruststore-configuration]]link:#quarkus-arangodb_quarkus.arangodb.ssl-truststore-ssltruststore-configuration[sslTruststore configuration]
+This configuration section is optional
+h|Type
+h|Default
+
+a| [[quarkus-arangodb_quarkus.arangodb.ssl-truststore.location]]`link:#quarkus-arangodb_quarkus.arangodb.ssl-truststore.location[quarkus.arangodb.ssl-truststore.location]`
+
+
+[.description]
+--
+location where to find the cert file
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_SSL_TRUSTSTORE_LOCATION+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_SSL_TRUSTSTORE_LOCATION+++`
+endif::add-copy-button-to-env-var[]
+--|path 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+
+a| [[quarkus-arangodb_quarkus.arangodb.ssl-truststore.password]]`link:#quarkus-arangodb_quarkus.arangodb.ssl-truststore.password[quarkus.arangodb.ssl-truststore.password]`
+
+
+[.description]
+--
+trustStore password
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ARANGODB_SSL_TRUSTSTORE_PASSWORD+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ARANGODB_SSL_TRUSTSTORE_PASSWORD+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+|===

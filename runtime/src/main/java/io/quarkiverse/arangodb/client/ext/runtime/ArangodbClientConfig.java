@@ -13,6 +13,10 @@ import io.smallrye.config.WithDefault;
 import io.smallrye.config.WithUnnamedKey;
 
 // https://docs.arangodb.com/3.11/develop/drivers/java/reference-version-7/driver-setup/
+
+/**
+ * @asciidoclet
+ */
 @ConfigMapping(prefix = "quarkus.arangodb")
 @ConfigRoot(phase = ConfigPhase.RUN_TIME)
 public interface ArangodbClientConfig {

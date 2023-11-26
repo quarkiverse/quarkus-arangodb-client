@@ -68,6 +68,7 @@
                                 <resource>
                                     <directory>${project.basedir}/../target/asciidoc/generated/config/</directory>
                                     <include>quarkus-arangodb-client-ext.adoc</include>
+                                    <include>quarkus-arangodb.adoc</include>
                                     <filtering>false</filtering>
                                 </resource>
                                 <resource>

@@ -50,12 +50,12 @@ public interface ArangodbClientConfig {
     /**
      * username for authentication, (default: root)
      */
-    Optional<String> user();
+    String user();
 
     /**
      * password for authentication
      */
-    Optional<String> password();
+    String password();
 
     /**
      * use SSL connection, (default: false)

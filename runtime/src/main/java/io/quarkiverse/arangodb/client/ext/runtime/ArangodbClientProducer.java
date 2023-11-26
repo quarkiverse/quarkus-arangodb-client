@@ -40,8 +40,8 @@ public class ArangodbClientProducer {
         arangodbClientConfig.hosts().forEach((name, host) -> clientBuilder.host(host.hostname(), host.port()));
         arangodbClientConfig.protocol().ifPresent(clientBuilder::protocol);
         arangodbClientConfig.timeout().ifPresent(clientBuilder::timeout);
-        arangodbClientConfig.user().ifPresent(clientBuilder::user);
-        arangodbClientConfig.password().ifPresent(clientBuilder::password);
+        clientBuilder.user(arangodbClientConfig.user())
+                .password(arangodbClientConfig.password());
         clientBuilder.useSsl(arangodbClientConfig.useSSL());
         if (arangodbClientConfig.useSSL()) {
             try {

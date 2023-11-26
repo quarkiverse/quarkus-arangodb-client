@@ -55,7 +55,7 @@ public interface ArangodbClientConfig {
     /**
      * password for authentication
      */
-    String password();
+    Optional<String> password();
 
     /**
      * use SSL connection, (default: false)

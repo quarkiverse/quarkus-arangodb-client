@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.jboss.logging.Logger;
 import org.testcontainers.utility.DockerImageName;
 
@@ -72,6 +73,14 @@ public class DevServicesArangodbProcessor {
         if (!isDockerWorking.getAsBoolean()) {
             log.debug("Not starting Dev Services for Arangodb, as Docker is not working.");
             return null;
+        }
+        for (var name : ConfigProvider.getConfig().getPropertyNames()) {
+            if (name.startsWith("quarkus.arangodb.hosts.")
+                || name.equals("quarkus.arangodb.user")
+                || name.equals("quarkus.arangodb.password")) {
+                log.debug("Not starting Dev Services for Arangodb, as there is explicit configuration present.");
+                return null;
+            }
         }
         final boolean useSSL = ConfigUtils.getFirstOptionalValue(List.of("quarkus.arangodb.use-ssl"), Boolean.class)
                 .orElse(Boolean.FALSE);

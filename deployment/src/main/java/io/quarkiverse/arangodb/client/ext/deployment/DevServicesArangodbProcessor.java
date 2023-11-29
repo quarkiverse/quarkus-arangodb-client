@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.jboss.logging.Logger;
 import org.testcontainers.utility.DockerImageName;
 
+import io.quarkus.deployment.IsDockerWorking;
 import io.quarkus.deployment.IsNormal;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.annotations.BuildSteps;
@@ -25,6 +26,7 @@ public class DevServicesArangodbProcessor {
     private static final Logger log = Logger.getLogger(DevServicesArangodbProcessor.class);
     static volatile RunningDevService devService;
     static volatile boolean first = true;
+    private final IsDockerWorking isDockerWorking = new IsDockerWorking(true);
 
     @BuildStep
     public DevServicesResultBuildItem startArangodbDevService(
@@ -67,6 +69,10 @@ public class DevServicesArangodbProcessor {
     }
 
     private RunningDevService startArangodb() {
+        if (!isDockerWorking.getAsBoolean()) {
+            log.debug("Not starting Dev Services for Arangodb, as Docker is not working.");
+            return null;
+        }
         final boolean useSSL = ConfigUtils.getFirstOptionalValue(List.of("quarkus.arangodb.use-ssl"), Boolean.class)
                 .orElse(Boolean.FALSE);
         final ArangodbContainer arangodb = new ArangodbContainer(

@@ -2,7 +2,9 @@
 
 include::./includes/attributes.adoc[]
 
-TIP: Describe what the extension does here.
+https://docs.arangodb.com[ArangoDB] is a scalable graph database system to drive value from connected data, faster. Native graphs, an integrated search engine, and JSON support, via a single query language.
+
+NOTE: This extension has been developed following samples presents in https://github.com/arangodb/arangodb-java-driver[ArangoDB Java Driver]
 
 == Installation
 
@@ -17,6 +19,134 @@ For instance, with Maven, add the following dependency to your POM file:
     <artifactId>quarkus-arangodb-client-ext</artifactId>
     <version>{project-version}</version>
 </dependency>
+----
+
+== Configuring
+
+The Arangodb driver can be configured with standard Quarkus properties.
+
+=== Connection
+
+Configuration support multiple hosts. If you have only one host you can default empty host naming can be used.
+
+. Single Host configuration
++
+[source,properties]
+.src/main/resources/application.properties
+----
+quarkus.arangodb.hosts.hostname = localhost
+quarkus.arangodb.hosts.port = 8529
+----
++
+[source,properties]
+.src/main/resources/application.properties
+----
+quarkus.arangodb.hosts.host1.hostname = host1
+quarkus.arangodb.hosts.host1.port = 8529
+quarkus.arangodb.hosts.host2.hostname = host2
+quarkus.arangodb.hosts.host2.port = 8529
+----
+
+=== Authentication
+
+==== Standard username / password authentication
+
+[source,properties]
+.src/main/resources/application.properties
+----
+quarkus.arangodb.user = root
+quarkus.arangodb.password = password
+----
+
+==== JWT authentication
+
+https://github.com/arangodb/arangodb-java-driver[ArangoDB Java Driver] provide JWT based authentication. This kind of authentication is not implemented because no use case has been determined.
+
+=== SSL secure connection
+
+To activate ssl secure connection please add these properties:
+
+[source,properties]
+.src/main/resources/application.properties
+----
+quarkus.arangodb.use-ssl = true
+quarkus.arangodb.ssl-truststore.location = example.truststore
+quarkus.arangodb.ssl-truststore.password = 12345678
+----
+
+NOTE: The truststore muse be generated using the PEM certificate used on Arangodb server side. The truststore location can refer to resources folder or on an external one. It is preferable to use an external one to better handle certificate renewal or revocation without repackaging the application.
+
+NOTE: If you want to add, setup SSL using a PEM certificate on Arangodb side you could have a look to `ArangodbContainer` inside this project. It can give you good insights for producing custom container image regarding `embedding certificate` and updating `arangodb.conf`. You can easily produce an image based on official `arangodb` image and use `/docker-entrypoint-initdb.d/` folder to add your custom shell or javascript scripts.
+
+NOTE: PEM certificate and `example.truststore` using password `12345678` used in this extension are coming from the https://github.com/arangodb/arangodb-java-driver[ArangoDB Java Driver]
+
+[[dev-services]]
+=== Dev Services
+
+Quarkus supports a feature called Dev Services that allows you to create various datasources without any config.
+Dev Services will bring up an Arangodb container if you didn't explicit add the default values or configured custom values for any of `quarkus.arangodb.hosts.*`, `quarkus.arangodb.user` or `quarkus.arangodb.password`.
+
+Otherwise, Quarkus will automatically start an Arangodb container when running tests or dev-mode, and automatically configure the connection.
+
+When running the production version of the application, the Arangodb connection need to be configured as normal, so if you want to include a production database config in your `application.properties` and continue to use Dev Services we recommend that you use the `%prod.` profile to define your Neo4j settings.
+
+[[customization]]
+=== Customization
+
+For the following paragraph the `Person` object will be used as sample to describe many ways to use, implement custom serializer / deserializer.
+
+[source,java]
+----
+include::{examples-dir}/Person.java[indent=0,tabsize=2]
+----
+
+==== Serializer / Deserializer
+
+By default, if jackson is not added as a dependency in the application, the shaded Jackson version present inside the driver will be used.
+In this case the configuration will be automatic. It works fine, however custom ObjectMapper configuration is not supported.
+
+To define custom Jackson configuration you can do it in several ways.
+
+. Using Quarkus jackson
++
+Add this dependency in pom.xml
++
+[source,xml]
+.pom.xml
+----
+<dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-jackson</artifactId>
+</dependency>
+----
++
+Next you can define a custom `ObjectMapperCustomizer`. This customizer is common across all the application.
++
+[source,java]
+----
+include::{examples-dir}/RegisterCustomModuleCustomizer.java[indent=0,tabsize=2]
+----
+
+. Custom ArangodbSerde
++
+If you want to define ObjectMapper behaviors only for Arangodb you can do it by providing a custom `ArangoSerde`. Only one can be defined on the application.
++
+[source,java]
+----
+include::{examples-dir}/CustomArangodbSerde.java[indent=0,tabsize=2]
+----
+
+==== SSLContext
+
+By default, the SSLContext implementation use this example https://github.com/arangodb/arangodb-java-driver/blob/main/driver/src/test/java/com/arangodb/example/ssl/SslExampleTest.java[SslExampleTest] defined in https://github.com/arangodb/arangodb-java-driver[ArangoDB Java Driver].
+
+It is convenient for most SSL use case. It can use certificate embedded inside the application or outside.
+
+If you want to provide your own implementation returning the SSLContext you can do it by implementing your own `ArangodbSSLContextProvider`.
+
+[source,java]
+----
+include::{examples-dir}/CustomArangodbSSLContextProviderProducer.java[indent=0,tabsize=2]
 ----
 
 [[extension-configuration-reference]]

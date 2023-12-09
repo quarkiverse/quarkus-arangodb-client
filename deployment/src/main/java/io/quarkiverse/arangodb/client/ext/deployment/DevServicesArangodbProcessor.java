@@ -76,8 +76,8 @@ public class DevServicesArangodbProcessor {
         }
         for (var name : ConfigProvider.getConfig().getPropertyNames()) {
             if (name.startsWith("quarkus.arangodb.hosts.")
-                || name.equals("quarkus.arangodb.user")
-                || name.equals("quarkus.arangodb.password")) {
+                    || name.equals("quarkus.arangodb.user")
+                    || name.equals("quarkus.arangodb.password")) {
                 log.debug("Not starting Dev Services for Arangodb, as there is explicit configuration present.");
                 return null;
             }

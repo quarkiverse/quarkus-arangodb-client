@@ -10,7 +10,7 @@ h|[[quarkus-arangodb_configuration]]link:#quarkus-arangodb_configuration[Configu
 h|Type
 h|Default
 
-a| [[quarkus-arangodb_quarkus.arangodb.protocol]]`link:#quarkus-arangodb_quarkus.arangodb.protocol[quarkus.arangodb.protocol]`
+a| [[quarkus-arangodb_quarkus-arangodb-protocol]]`link:#quarkus-arangodb_quarkus-arangodb-protocol[quarkus.arangodb.protocol]`
 
 
 [.description]
@@ -28,7 +28,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.timeout]]`link:#quarkus-arangodb_quarkus.arangodb.timeout[quarkus.arangodb.timeout]`
+a| [[quarkus-arangodb_quarkus-arangodb-timeout]]`link:#quarkus-arangodb_quarkus-arangodb-timeout[quarkus.arangodb.timeout]`
 
 
 [.description]
@@ -45,7 +45,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.user]]`link:#quarkus-arangodb_quarkus.arangodb.user[quarkus.arangodb.user]`
+a| [[quarkus-arangodb_quarkus-arangodb-user]]`link:#quarkus-arangodb_quarkus-arangodb-user[quarkus.arangodb.user]`
 
 
 [.description]
@@ -62,7 +62,7 @@ endif::add-copy-button-to-env-var[]
 |required icon:exclamation-circle[title=Configuration property is required]
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.password]]`link:#quarkus-arangodb_quarkus.arangodb.password[quarkus.arangodb.password]`
+a| [[quarkus-arangodb_quarkus-arangodb-password]]`link:#quarkus-arangodb_quarkus-arangodb-password[quarkus.arangodb.password]`
 
 
 [.description]
@@ -79,7 +79,7 @@ endif::add-copy-button-to-env-var[]
 |required icon:exclamation-circle[title=Configuration property is required]
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.use-ssl]]`link:#quarkus-arangodb_quarkus.arangodb.use-ssl[quarkus.arangodb.use-ssl]`
+a| [[quarkus-arangodb_quarkus-arangodb-use-ssl]]`link:#quarkus-arangodb_quarkus-arangodb-use-ssl[quarkus.arangodb.use-ssl]`
 
 
 [.description]
@@ -96,7 +96,7 @@ endif::add-copy-button-to-env-var[]
 |`false`
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.verify-host]]`link:#quarkus-arangodb_quarkus.arangodb.verify-host[quarkus.arangodb.verify-host]`
+a| [[quarkus-arangodb_quarkus-arangodb-verify-host]]`link:#quarkus-arangodb_quarkus-arangodb-verify-host[quarkus.arangodb.verify-host]`
 
 
 [.description]
@@ -113,7 +113,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.chunk-size]]`link:#quarkus-arangodb_quarkus.arangodb.chunk-size[quarkus.arangodb.chunk-size]`
+a| [[quarkus-arangodb_quarkus-arangodb-chunk-size]]`link:#quarkus-arangodb_quarkus-arangodb-chunk-size[quarkus.arangodb.chunk-size]`
 
 
 [.description]
@@ -130,7 +130,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.max-connections]]`link:#quarkus-arangodb_quarkus.arangodb.max-connections[quarkus.arangodb.max-connections]`
+a| [[quarkus-arangodb_quarkus-arangodb-max-connections]]`link:#quarkus-arangodb_quarkus-arangodb-max-connections[quarkus.arangodb.max-connections]`
 
 
 [.description]
@@ -147,7 +147,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.connection-ttl]]`link:#quarkus-arangodb_quarkus.arangodb.connection-ttl[quarkus.arangodb.connection-ttl]`
+a| [[quarkus-arangodb_quarkus-arangodb-connection-ttl]]`link:#quarkus-arangodb_quarkus-arangodb-connection-ttl[quarkus.arangodb.connection-ttl]`
 
 
 [.description]
@@ -164,7 +164,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.keep-alive-interval]]`link:#quarkus-arangodb_quarkus.arangodb.keep-alive-interval[quarkus.arangodb.keep-alive-interval]`
+a| [[quarkus-arangodb_quarkus-arangodb-keep-alive-interval]]`link:#quarkus-arangodb_quarkus-arangodb-keep-alive-interval[quarkus.arangodb.keep-alive-interval]`
 
 
 [.description]
@@ -181,7 +181,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.acquire-host-list]]`link:#quarkus-arangodb_quarkus.arangodb.acquire-host-list[quarkus.arangodb.acquire-host-list]`
+a| [[quarkus-arangodb_quarkus-arangodb-acquire-host-list]]`link:#quarkus-arangodb_quarkus-arangodb-acquire-host-list[quarkus.arangodb.acquire-host-list]`
 
 
 [.description]
@@ -198,7 +198,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.acquire-host-list-interval]]`link:#quarkus-arangodb_quarkus.arangodb.acquire-host-list-interval[quarkus.arangodb.acquire-host-list-interval]`
+a| [[quarkus-arangodb_quarkus-arangodb-acquire-host-list-interval]]`link:#quarkus-arangodb_quarkus-arangodb-acquire-host-list-interval[quarkus.arangodb.acquire-host-list-interval]`
 
 
 [.description]
@@ -215,7 +215,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.load-balancing-strategy]]`link:#quarkus-arangodb_quarkus.arangodb.load-balancing-strategy[quarkus.arangodb.load-balancing-strategy]`
+a| [[quarkus-arangodb_quarkus-arangodb-load-balancing-strategy]]`link:#quarkus-arangodb_quarkus-arangodb-load-balancing-strategy[quarkus.arangodb.load-balancing-strategy]`
 
 
 [.description]
@@ -233,7 +233,7 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.response-queue-time-samples]]`link:#quarkus-arangodb_quarkus.arangodb.response-queue-time-samples[quarkus.arangodb.response-queue-time-samples]`
+a| [[quarkus-arangodb_quarkus-arangodb-response-queue-time-samples]]`link:#quarkus-arangodb_quarkus-arangodb-response-queue-time-samples[quarkus.arangodb.response-queue-time-samples]`
 
 
 [.description]
@@ -250,14 +250,14 @@ endif::add-copy-button-to-env-var[]
 |
 
 
-h|[[quarkus-arangodb_quarkus.arangodb.hosts-list-of-hosts-to-connect-on]]link:#quarkus-arangodb_quarkus.arangodb.hosts-list-of-hosts-to-connect-on[list of hosts to connect on]
+h|[[quarkus-arangodb_quarkus-arangodb-hosts-list-of-hosts-to-connect-on]]link:#quarkus-arangodb_quarkus-arangodb-hosts-list-of-hosts-to-connect-on[list of hosts to connect on]
 
 h|Type
 h|Default
 
-a| [[quarkus-arangodb_quarkus.arangodb.hosts.hostname]]`link:#quarkus-arangodb_quarkus.arangodb.hosts.hostname[quarkus.arangodb.hosts.hostname]`
+a| [[quarkus-arangodb_quarkus-arangodb-hosts-hostname]]`link:#quarkus-arangodb_quarkus-arangodb-hosts-hostname[quarkus.arangodb.hosts.hostname]`
 
-`link:#quarkus-arangodb_quarkus.arangodb.hosts.hostname[quarkus.arangodb.hosts."host-name".hostname]`
+`link:#quarkus-arangodb_quarkus-arangodb-hosts-hostname[quarkus.arangodb.hosts."host-name".hostname]`
 
 
 [.description]
@@ -274,9 +274,9 @@ endif::add-copy-button-to-env-var[]
 |required icon:exclamation-circle[title=Configuration property is required]
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.hosts.port]]`link:#quarkus-arangodb_quarkus.arangodb.hosts.port[quarkus.arangodb.hosts.port]`
+a| [[quarkus-arangodb_quarkus-arangodb-hosts-port]]`link:#quarkus-arangodb_quarkus-arangodb-hosts-port[quarkus.arangodb.hosts.port]`
 
-`link:#quarkus-arangodb_quarkus.arangodb.hosts.port[quarkus.arangodb.hosts."host-name".port]`
+`link:#quarkus-arangodb_quarkus-arangodb-hosts-port[quarkus.arangodb.hosts."host-name".port]`
 
 
 [.description]
@@ -293,12 +293,12 @@ endif::add-copy-button-to-env-var[]
 |required icon:exclamation-circle[title=Configuration property is required]
 
 
-h|[[quarkus-arangodb_quarkus.arangodb.ssl-truststore-ssltruststore-configuration]]link:#quarkus-arangodb_quarkus.arangodb.ssl-truststore-ssltruststore-configuration[sslTruststore configuration]
+h|[[quarkus-arangodb_quarkus-arangodb-ssl-truststore-ssltruststore-configuration]]link:#quarkus-arangodb_quarkus-arangodb-ssl-truststore-ssltruststore-configuration[sslTruststore configuration]
 This configuration section is optional
 h|Type
 h|Default
 
-a| [[quarkus-arangodb_quarkus.arangodb.ssl-truststore.location]]`link:#quarkus-arangodb_quarkus.arangodb.ssl-truststore.location[quarkus.arangodb.ssl-truststore.location]`
+a| [[quarkus-arangodb_quarkus-arangodb-ssl-truststore-location]]`link:#quarkus-arangodb_quarkus-arangodb-ssl-truststore-location[quarkus.arangodb.ssl-truststore.location]`
 
 
 [.description]
@@ -315,7 +315,7 @@ endif::add-copy-button-to-env-var[]
 |required icon:exclamation-circle[title=Configuration property is required]
 
 
-a| [[quarkus-arangodb_quarkus.arangodb.ssl-truststore.password]]`link:#quarkus-arangodb_quarkus.arangodb.ssl-truststore.password[quarkus.arangodb.ssl-truststore.password]`
+a| [[quarkus-arangodb_quarkus-arangodb-ssl-truststore-password]]`link:#quarkus-arangodb_quarkus-arangodb-ssl-truststore-password[quarkus.arangodb.ssl-truststore.password]`
 
 
 [.description]

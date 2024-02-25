@@ -5,7 +5,6 @@ import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_SINGLE_E
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.util.List;
 
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
@@ -25,8 +24,6 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
-import io.quarkus.builder.Version;
-import io.quarkus.maven.dependency.Dependency;
 import io.quarkus.test.QuarkusUnitTest;
 
 public class ArangodbClientExtCustomSerdeTest extends CommonArangodbExtTest {
@@ -34,9 +31,7 @@ public class ArangodbClientExtCustomSerdeTest extends CommonArangodbExtTest {
     static final QuarkusUnitTest unitTest = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
                     .addClass(Person.class)
-                    .addClass(CustomArangodbSerde.class))
-            .setForcedDependencies(List.of(
-                    Dependency.of("io.quarkus", "quarkus-jackson", Version.getVersion())));
+                    .addClass(CustomArangodbSerde.class));
 
     @Singleton
     static final class CustomArangodbSerde {

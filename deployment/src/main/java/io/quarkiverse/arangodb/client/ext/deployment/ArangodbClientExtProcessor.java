@@ -61,4 +61,5 @@ class ArangodbClientExtProcessor {
                 .addRuntimeInitializedClass("com.arangodb.shaded.vertx.core.eventbus.impl.clustered.ClusteredEventBus")
                 .addNativeImageSystemProperty(ResolverProvider.DISABLE_DNS_RESOLVER_PROP_NAME, "true").build();
     }
+
 }

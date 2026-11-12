@@ -22,11 +22,11 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.quarkus.builder.Version;
 import io.quarkus.jackson.ObjectMapperCustomizer;
 import io.quarkus.maven.dependency.Dependency;
-import io.quarkus.test.QuarkusUnitTest;
+import io.quarkus.test.QuarkusExtensionTest;
 
 public class ArangodbClientExtUsingQuarkusJacksonObjectMapperTest extends CommonArangodbExtTest {
     @RegisterExtension
-    static final QuarkusUnitTest unitTest = new QuarkusUnitTest()
+    static final QuarkusExtensionTest unitTest = new QuarkusExtensionTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
                     .addClass(Person.class)
                     .addClass(RegisterCustomModuleCustomizer.class))

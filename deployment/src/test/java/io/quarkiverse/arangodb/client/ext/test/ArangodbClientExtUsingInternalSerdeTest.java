@@ -10,11 +10,11 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import com.arangodb.entity.BaseDocument;
 import com.arangodb.model.DocumentCreateOptions;
 
-import io.quarkus.test.QuarkusUnitTest;
+import io.quarkus.test.QuarkusExtensionTest;
 
 public class ArangodbClientExtUsingInternalSerdeTest extends CommonArangodbExtTest {
     @RegisterExtension
-    static final QuarkusUnitTest unitTest = new QuarkusUnitTest()
+    static final QuarkusExtensionTest unitTest = new QuarkusExtensionTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
                     .addClass(Person.class));
 

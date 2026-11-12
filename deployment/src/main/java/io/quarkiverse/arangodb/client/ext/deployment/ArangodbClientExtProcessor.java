@@ -15,7 +15,7 @@ import io.quarkus.deployment.builditem.nativeimage.NativeImageConfigBuildItem;
 
 class ArangodbClientExtProcessor {
 
-    private static final String FEATURE = "arangodb-client-ext";
+    static final String FEATURE = "arangodb-client-ext";
 
     @BuildStep
     FeatureBuildItem feature() {

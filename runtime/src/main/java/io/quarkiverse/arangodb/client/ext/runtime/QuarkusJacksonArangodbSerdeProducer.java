@@ -6,10 +6,9 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
 
 import com.arangodb.serde.ArangoSerde;
-import com.arangodb.serde.jackson.internal.JacksonSerdeImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.quarkus.arc.DefaultBean;
+import tools.jackson.databind.ObjectMapper;
 
 @Singleton
 public class QuarkusJacksonArangodbSerdeProducer {
@@ -19,6 +18,6 @@ public class QuarkusJacksonArangodbSerdeProducer {
     @DefaultBean
     public ArangoSerde arangodbSerdeProducer(final ObjectMapper objectMapper) {
         Objects.requireNonNull(objectMapper);
-        return new JacksonSerdeImpl(objectMapper);
+        return new QuarkusJacksonArangoSerde(objectMapper);
     }
 }

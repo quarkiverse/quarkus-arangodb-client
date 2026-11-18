@@ -8,10 +8,13 @@ import org.testcontainers.utility.MountableFile;
 
 import com.github.dockerjava.api.command.InspectContainerResponse;
 
-public final class ArangodbContainer extends GenericContainer<ArangodbContainer> {
+import io.quarkus.deployment.builditem.Startable;
+
+public final class ArangodbContainer extends GenericContainer<ArangodbContainer> implements Startable {
     private static final String IMAGE_NAME = "arangodb";
     private static final String ARANGO_ROOT_PASSWORD = "ARANGO_ROOT_PASSWORD";
-    private static final String PASSWORD = "password";
+    static final String USER = "root";
+    static final String PASSWORD = "password";
     private static final DockerImageName IMAGE = DockerImageName.parse(IMAGE_NAME);
     private static final int ARANGODB_HTTP_PORT = 8529;
     private static final int ARANGODB_SSL_PORT = 8530;
@@ -43,7 +46,7 @@ public final class ArangodbContainer extends GenericContainer<ArangodbContainer>
     }
 
     public String getUser() {
-        return "root";
+        return USER;
     }
 
     public String getPassword() {
@@ -52,5 +55,15 @@ public final class ArangodbContainer extends GenericContainer<ArangodbContainer>
 
     public Integer getPort() {
         return useSSL ? getMappedPort(ARANGODB_SSL_PORT) : getMappedPort(ARANGODB_HTTP_PORT);
+    }
+
+    @Override
+    public void close() {
+        super.close();
+    }
+
+    @Override
+    public String getConnectionInfo() {
+        return getHost() + ":" + getPort();
     }
 }

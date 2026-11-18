@@ -120,7 +120,7 @@ Add this dependency in pom.xml
 </dependency>
 ----
 +
-Next you can define a custom `ObjectMapperCustomizer`. This customizer is common across all the application.
+Next you can define a custom `JsonMapperBuilderCustomizer`. This customizer is common across all the application.
 +
 [source,java]
 ----

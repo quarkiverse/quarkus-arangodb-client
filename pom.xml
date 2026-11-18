@@ -4,7 +4,7 @@
   <parent>
     <groupId>io.quarkiverse</groupId>
     <artifactId>quarkiverse-parent</artifactId>
-    <version>16</version>
+    <version>26</version>
   </parent>
   <groupId>io.quarkiverse.arangodb-client-ext</groupId>
   <artifactId>quarkus-arangodb-client-ext-parent</artifactId>
@@ -23,10 +23,10 @@
   </scm>
   <properties>
     <compiler-plugin.version>3.12.1</compiler-plugin.version>
-    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus.version>3.20.0</quarkus.version>
+    <quarkus.version>4.0.0</quarkus.version>
     <arangodb-java-driver.version>7.5.1</arangodb-java-driver.version>
   </properties>
   <dependencyManagement>
